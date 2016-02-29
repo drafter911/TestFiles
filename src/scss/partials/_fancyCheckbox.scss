@@ -1,0 +1,41 @@
+$border-radius: 3px;
+$check-color: #87a288;
+$white-l-gray: #f6f6f6;
+
+input[type="checkbox"] {
+  opacity: 0;
+  + label.fancy {
+    width: 16px;
+    height: 100%;
+    margin-right: 10px;
+    i {
+      position: relative;
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border-radius: $border-radius;
+      cursor: pointer;
+      background-color: $white-l-gray;
+      .check {
+        @include transformRotate(38deg);
+        top: 50%;
+        left: 50%;
+        margin: -7px 0 0 -4px;
+        width: 7px;
+        height: 11px;
+        border:  2px solid $white-l-gray;
+        border-top: none;
+        border-left: none;
+      }
+    }
+  }
+  &:checked {
+    + label.fancy {
+      i {
+        .check {
+          border-color: $check-color;
+        }
+      }
+    }
+  }
+}

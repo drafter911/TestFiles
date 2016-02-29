@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="Ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8">-->
+    <link rel="stylesheet" href="public/stylesheets/style.css"/>
+    <script src="public/javascripts/bundle.js" type="text/javascript" charset="UTF-8"></script>
+    <title>Calendar</title>
+</head>
+<body>
+<div class="main-wrapper rel">
+    <header id="header" class="bg-purple">
+        <a href="#" class="logo">
+            <span class="logo-ico inline-block"></span>
+            <span class="logo-text inline-block"></span>
+            <span class="logo-ico inline-block mirror"></span>
+        </a>
+    </header>
+    <div id="content">
+        <section class="calendar">
+            <div id="calendar"></div>
+        </section>
+        <form action="">
+            <section id="time-table" class="bg-purple-light clear-fix">
+                <ul class="color-map-list clear-fix">
+                    <li class="color-map white available-pic">Доступно</li>
+                    <li class="color-map white booked-pic">Бронировано</li>
+                    <li class="color-map white not-available-pic">Недоступно</li>
+                    <li class="color-map white blocked-pic">Заблокировано</li>
+                </ul>
+                <section class="time-list" id="time-list">
+                    <div class="pull-left time-table-column" id="column-1"></div>
+                    <div class="pull-left time-table-column" id="column-2"></div>
+                    <div class="pull-left time-table-column" id="column-3"></div>
+                    <div class="pull-left time-table-column" id="column-4"></div>
+                </section>
+            </section>
+            <section class="submit-section">
+                <input type="submit" class="submit-btn bg-purple-light white" value="Пропустить и оформить"/>
+                <input type="submit" class="submit-btn bg-purple-light white" value="Продолжить"/>
+            </section>
+        </form>
+
+    </div>
+</div>
+<footer id="footer"></footer>
+</body>
+</html>
