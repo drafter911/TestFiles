@@ -14,11 +14,11 @@
   },
   {
     "time": "01:30 - 02:00",
-    "status": "booked"
+    "status": "available"
   },
   {
     "time": "02:00 - 02:30",
-    "status": "booked"
+    "status": "available"
   },
   {
     "time": "02:30 - 03:00",
@@ -70,15 +70,15 @@
   },
   {
     "time": "08:30 - 09:00",
-    "status": "booked"
+    "status": "available"
   },
   {
     "time": "09:00 - 09:30",
-    "status": "booked"
+    "status": "available"
   },
   {
     "time": "09:30 - 10:00",
-    "status": "booked"
+    "status": "available"
   },
   {
     "time": "10:00 - 10:30",

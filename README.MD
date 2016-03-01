@@ -4,6 +4,4 @@
 
 > npm install
 
-> npm start
-
-> open localhost:3000 in your browser
+> open index.html in your browser

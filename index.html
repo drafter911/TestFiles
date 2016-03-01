@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="Ru">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8">-->
     <link rel="stylesheet" href="public/stylesheets/style.css"/>
     <script src="public/javascripts/bundle.js" type="text/javascript" charset="UTF-8"></script>
     <title>Calendar</title>
@@ -11,39 +10,96 @@
 <body>
 <div class="main-wrapper rel">
     <header id="header" class="bg-purple">
-        <a href="#" class="logo">
-            <span class="logo-ico inline-block"></span>
-            <span class="logo-text inline-block"></span>
-            <span class="logo-ico inline-block mirror"></span>
-        </a>
+        <a href="#" class="logo"></a>
     </header>
-    <div id="content">
-        <section class="calendar">
-            <div id="calendar"></div>
-        </section>
-        <form action="">
-            <section id="time-table" class="bg-purple-light clear-fix">
-                <ul class="color-map-list clear-fix">
-                    <li class="color-map white available-pic">Доступно</li>
-                    <li class="color-map white booked-pic">Бронировано</li>
-                    <li class="color-map white not-available-pic">Недоступно</li>
-                    <li class="color-map white blocked-pic">Заблокировано</li>
+    <div id="content" class="clear-fix">
+        <div class="right-panel pull-right">
+            <section class="rate">
+                <h6 class="title">Рейтинг лучших специалистов</h6>
+                <ul class="specialist-list">
+                    <li class="person clear-fix">
+                        <div class="person-image pull-left">
+                            <img src="public/images/photo.png" class="image" alt="photo"/>
+                        </div>
+                        <p class="person-name">Черевкова Любовь Захаровна</p>
+                        <a href="#" class="person-feedback">78 отзывов</a>
+                    </li>
+                    <li class="person clear-fix">
+                        <div class="person-image pull-left">
+                            <img src="public/images/photo.png" class="image" alt="photo"/>
+                        </div>
+                        <p class="person-name">Черевкова Любовь Захаровна</p>
+                        <a href="#" class="person-feedback">78 отзывов</a>
+                    </li>
+                    <li class="person clear-fix">
+                        <div class="person-image pull-left">
+                            <img src="public/images/photo.png" class="image" alt="photo"/>
+                        </div>
+                        <p class="person-name">Черевкова Любовь Захаровна</p>
+                        <a href="#" class="person-feedback">78 отзывов</a>
+                    </li>
                 </ul>
-                <section class="time-list" id="time-list">
-                    <div class="pull-left time-table-column" id="column-1"></div>
-                    <div class="pull-left time-table-column" id="column-2"></div>
-                    <div class="pull-left time-table-column" id="column-3"></div>
-                    <div class="pull-left time-table-column" id="column-4"></div>
+                <div class="center-text">
+                    <a href="#" class="all-specialists rel inline-block">Все специалисты</a>
+                </div>
+            </section>
+            <section class="use-read">
+                <h6 class="title">Полезно прочитать</h6>
+                <ul class="specialist-list">
+                    <li class="news clear-fix">
+                        <div class="news-image pull-left">
+                            <img src="public/images/img1.png" class="image" alt="photo"/>
+                        </div>
+                        <p class="person-name">Новинки салонов красоты</p>
+                        <a href="#" class="person-feedback">Посмотреть</a>
+                    </li>
+                    <li class="person clear-fix">
+                        <div class="news-image pull-left">
+                            <img src="public/images/img2.png" class="image" alt="photo"/>
+                        </div>
+                        <p class="person-name">Новинки салонов красоты</p>
+                        <a href="#" class="person-feedback">Посмотреть</a>
+                    </li>
+                    <li class="person clear-fix">
+                        <div class="news-image pull-left">
+                            <img src="public/images/img3.png" class="image" alt="photo"/>
+                        </div>
+                        <p class="person-name">Новинки салонов красоты</p>
+                        <a href="#" class="person-feedback"><span>Посмотреть</span></a>
+                    </li>
+                </ul>
+                <div class="center-text">
+                    <a href="#" class="all-news rel inline-block">Все новости</a>
+                </div>
+            </section>
+        </div>
+        <div class="content-wrapper pull-left">
+            <section class="calendar">
+                <div id="calendar"></div>
+            </section>
+            <form action="" id="time-list-form">
+                <section id="time-table" class="bg-purple-light clear-fix">
+                    <ul class="color-map-list clear-fix">
+                        <li class="color-map white available-pic">Доступно</li>
+                        <li class="color-map white booked-pic">Бронировано</li>
+                        <li class="color-map white not-available-pic">Недоступно</li>
+                        <li class="color-map white blocked-pic">Заблокировано</li>
+                    </ul>
+                    <section class="time-list" id="time-list">
+                        <div class="pull-left time-table-column" id="column-1"></div>
+                        <div class="pull-left time-table-column" id="column-2"></div>
+                        <div class="pull-left time-table-column" id="column-3"></div>
+                        <div class="pull-left time-table-column" id="column-4"></div>
+                    </section>
                 </section>
-            </section>
-            <section class="submit-section">
-                <input type="submit" class="submit-btn bg-purple-light white" value="Пропустить и оформить"/>
-                <input type="submit" class="submit-btn bg-purple-light white" value="Продолжить"/>
-            </section>
-        </form>
-
+                <section class="submit-section">
+                    <input type="submit" class="submit-btn bg-purple-light white" value="Пропустить и оформить"/>
+                    <input type="submit" class="submit-btn bg-purple-light white" value="Продолжить"/>
+                </section>
+            </form>
+        </div>
     </div>
 </div>
-<footer id="footer"></footer>
+<footer id="footer" class="bg-purple"></footer>
 </body>
 </html>

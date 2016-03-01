@@ -1,8 +1,11 @@
 import $ from 'jquery';
 import 'jquery-ui';
-import Calendar from 'modules/calendar/calendar';
+import template from 'modules/template/elem';
 
 $(document).ready(() => {
+
+    var container = $('.time-list');
+    var form = $('#time-list-form');
 
     $('#calendar').datepicker({
         beforeShowDay: $.datepicker.noWeekends,
@@ -11,50 +14,47 @@ $(document).ready(() => {
         firstDay: 1,
         gotoCurrent: true,
         minDate: 0,
-        closeText: "Закрыть",
-        prevText: "&#x3C;Пред",
-        nextText: "След&#x3E;",
-        currentText: "Сегодня",
-        monthNames: [ "Январь","Февраль","Март","Апрель","Май","Июнь",
-            "Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь" ],
-        monthNamesShort: [ "Янв","Фев","Мар","Апр","Май","Июн",
-            "Июл","Авг","Сен","Окт","Ноя","Дек" ],
-        dayNames: [ "воскресенье","понедельник","вторник","среда","четверг","пятница","суббота" ],
-        dayNamesShort: [ "вск","пнд","втр","срд","чтв","птн","сбт" ],
-        dayNamesMin: [ "Вс","Пн","Вт","Ср","Чт","Пт","Сб" ],
-        weekHeader: "Нед",
+        closeText: "",
+        prevText: "",
+        nextText: "",
+        currentText: "",
+        monthNames: ["РЇРЅРІР°СЂСЊ", "Р¤РµРІСЂР°Р»СЊ", "РњР°СЂС‚", "РђРїСЂРµР»СЊ", "РњР°Р№", "РСЋРЅСЊ",
+            "РСЋР»СЊ", "РђРІРіСѓСЃС‚", "РЎРµРЅС‚СЏР±СЂСЊ", "РћРєС‚СЏР±СЂСЊ", "РќРѕСЏР±СЂСЊ", "Р”РµРєР°Р±СЂСЊ"],
+        monthNamesShort: ["РЇРЅРІ", "Р¤РµРІ", "РњР°СЂ", "РђРїСЂ", "РњР°Р№", "РСЋРЅ",
+            "РСЋР»", "РђРІРі", "РЎРµРЅ", "РћРєС‚", "РќРѕСЏ", "Р”РµРє"],
+        dayNames: ["Р’РѕСЃРєСЂРµСЃРµРЅСЊРµ", "РџРѕРЅРµРґРµР»СЊРЅРёРє", "Р’С‚РѕСЂРЅРёРє", "РЎСЂРµРґР°", "Р§РµС‚РІРµСЂРі", "РџСЏС‚РЅРёС†Р°", "РЎСѓР±Р±РѕС‚Р°"],
+        dayNamesShort: ["Р’РѕСЃ", "РџРѕРЅ", "Р’С‚Рѕ", "РЎСЂРµ", "Р§РµС‚", "РџСЏС‚", "РЎСѓР±"],
+        dayNamesMin: ["Р’СЃ", "РџРЅ", "Р’С‚", "РЎСЂ", "Р§С‚", "РџС‚", "РЎР±"],
         dateFormat: "dd.mm.yy",
         isRTL: false,
         showMonthAfterYear: false,
         yearSuffix: ""
     });
 
-    console.log('Вася');
-
-    var container = $('.time-list');
-
-    $.ajax("times.json").then(
-        function(data){
-            console.log(data.length);
-            var c = container.find('#column-1');
-            for(var i in data){
-                let time = data[i];
-                c.append('<label for="'+time.status + i +'" class="time-table-elem '+ time.status +'">' +
-                    '<input class="toggle hidden" id="'+time.status + i +'" type="checkbox"'+
-                    (time.status == "booked" ? 'checked' : '') + '>' +
-                    '<label for="'+time.status + i +'" class="fancy pull-left">' +
-                    '<i><span class="check abs"></span></i>' +
-                    '</label>' +
-                    '<span class="white">' + time.time + '</span>' +
-                '</label>');
-
-                if((+i+1)%12 == 0 && i != 0){
-
-                    console.log(c.next());
-                    c = c.next();
+    $('.ui-state-default').on('click', () => {
+        $.ajax("times.json").then(
+            (data) => {
+                let c = container.find('#column-1');
+                c.html();
+                for (let i in data) {
+                    let time = data[i];
+                    c.append(template(time, i));
+                    if ((+i + 1) % 12 == 0 && i != 0) {
+                        c = c.next();
+                        c.html();
+                    }
                 }
             }
-        }
-    );
+        );
+    });
+
+    container.delegate('.toggle', 'change', (e) => {
+        $(e.target).parent('.time-table-elem').toggleClass('booked available');
+    });
+
+    form.on('submit', (e) => {
+        e.preventDefault();
+        console.log(JSON.stringify(form.serializeArray()));
+    });
 
 });

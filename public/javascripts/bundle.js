@@ -54,11 +54,14 @@
 
 	__webpack_require__(2);
 
-	var _modulesCalendarCalendar = __webpack_require__(3);
+	var _modulesTemplateElem = __webpack_require__(3);
 
-	var _modulesCalendarCalendar2 = _interopRequireDefault(_modulesCalendarCalendar);
+	var _modulesTemplateElem2 = _interopRequireDefault(_modulesTemplateElem);
 
 	(0, _jquery2['default'])(document).ready(function () {
+
+	    var container = (0, _jquery2['default'])('.time-list');
+	    var form = (0, _jquery2['default'])('#time-list-form');
 
 	    (0, _jquery2['default'])('#calendar').datepicker({
 	        beforeShowDay: _jquery2['default'].datepicker.noWeekends,
@@ -67,39 +70,43 @@
 	        firstDay: 1,
 	        gotoCurrent: true,
 	        minDate: 0,
-	        closeText: "�������",
-	        prevText: "&#x3C;����",
-	        nextText: "����&#x3E;",
-	        currentText: "�������",
-	        monthNames: ["������", "�������", "����", "������", "���", "����", "����", "������", "��������", "�������", "������", "�������"],
-	        monthNamesShort: ["���", "���", "���", "���", "���", "���", "���", "���", "���", "���", "���", "���"],
-	        dayNames: ["�����������", "�����������", "�������", "�����", "�������", "�������", "�������"],
-	        dayNamesShort: ["���", "���", "���", "���", "���", "���", "���"],
-	        dayNamesMin: ["��", "��", "��", "��", "��", "��", "��"],
-	        weekHeader: "���",
+	        closeText: "",
+	        prevText: "",
+	        nextText: "",
+	        currentText: "",
+	        monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+	        monthNamesShort: ["Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"],
+	        dayNames: ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"],
+	        dayNamesShort: ["Вос", "Пон", "Вто", "Сре", "Чет", "Пят", "Суб"],
+	        dayNamesMin: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
 	        dateFormat: "dd.mm.yy",
 	        isRTL: false,
 	        showMonthAfterYear: false,
 	        yearSuffix: ""
 	    });
 
-	    console.log('����');
-
-	    var container = (0, _jquery2['default'])('.time-list');
-
-	    _jquery2['default'].ajax("times.json").then(function (data) {
-	        console.log(data.length);
-	        var c = container.find('#column-1');
-	        for (var i in data) {
-	            var time = data[i];
-	            c.append('<label for="' + time.status + i + '" class="time-table-elem ' + time.status + '">' + '<input class="toggle hidden" id="' + time.status + i + '" type="checkbox"' + (time.status == "booked" ? 'checked' : '') + '>' + '<label for="' + time.status + i + '" class="fancy pull-left">' + '<i><span class="check abs"></span></i>' + '</label>' + '<span class="white">' + time.time + '</span>' + '</label>');
-
-	            if ((+i + 1) % 12 == 0 && i != 0) {
-
-	                console.log(c.next());
-	                c = c.next();
+	    (0, _jquery2['default'])('.ui-state-default').on('click', function () {
+	        _jquery2['default'].ajax("times.json").then(function (data) {
+	            var c = container.find('#column-1');
+	            c.html();
+	            for (var i in data) {
+	                var time = data[i];
+	                c.append((0, _modulesTemplateElem2['default'])(time, i));
+	                if ((+i + 1) % 12 == 0 && i != 0) {
+	                    c = c.next();
+	                    c.html();
+	                }
 	            }
-	        }
+	        });
+	    });
+
+	    container.delegate('.toggle', 'change', function (e) {
+	        (0, _jquery2['default'])(e.target).parent('.time-table-elem').toggleClass('booked available');
+	    });
+
+	    form.on('submit', function (e) {
+	        e.preventDefault();
+	        console.log(JSON.stringify(form.serializeArray()));
 	    });
 	});
 
@@ -24953,15 +24960,19 @@
 
 /***/ },
 /* 3 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	'use strict';
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+	var Template = function Template(obj, number) {
+	    return '<label for="' + obj.status + number + '" class="time-table-elem ' + obj.status + '">' + '<input class="toggle hidden" id="' + obj.status + number + '"name="' + obj.time + '" type="checkbox"' + (obj.status == "booked" ? 'checked' : '') + 'data-time"=' + obj.time + '">' + '<label for="' + obj.status + number + '" class="fancy pull-left">' + '<i><span class="check abs"></span></i>' + '</label>' + '<span class="white">' + obj.time + '</span>' + '</label>';
+	};
 
-	var _jquery = __webpack_require__(1);
-
-	var _jquery2 = _interopRequireDefault(_jquery);
+	exports['default'] = Template;
+	module.exports = exports['default'];
 
 /***/ }
 /******/ ]);
